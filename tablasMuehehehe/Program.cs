@@ -8,8 +8,6 @@ class Program
 	static String[,] tablaVisible;
 	static void Main(string[] args)
 	{
-		
-		Console.WriteLine("Hello World");
 		tabla = pedirMatriz();
 		//mostrarMatriz(tabla);
 		Console.WriteLine("cuantas minas quieres descubrir");
