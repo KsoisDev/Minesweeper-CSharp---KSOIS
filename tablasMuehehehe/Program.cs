@@ -5,8 +5,10 @@ namespace tablasMuehehehe
 class Program
 {
 	static String[,] tabla;
+	static String[,] tablaVisible;
 	static void Main(string[] args)
 	{
+		
 		Console.WriteLine("Hello World");
 		tabla = pedirMatriz();
 		//mostrarMatriz(tabla);
@@ -21,12 +23,17 @@ class Program
 			int columnas = int.Parse(dimensiones[1])-1;
 			DescubrirMatriz(filas, columnas);
 		}
-		mostrarMatriz(tabla);
+		mostrarMatriz(tablaVisible);
 	}
 
 	static void DescubrirMatriz(int fila, int columna)
 	{
 		int numeroMinas = 0;
+		if (tabla[fila, columna] == "*")
+		{
+			Console.WriteLine("Has perdido");
+			return;
+		}
 		for (int i = fila - 1; i <= (fila + 1); i++)
 		{
 			for (int j = columna - 1; j <= (columna + 1); j++)
@@ -50,11 +57,13 @@ class Program
 		if (numeroMinas > 0)
 		{
 			//Console.WriteLine($"fila: {fila}, columna: {columna},  numeroMinas: {numeroMinas}");
+			tablaVisible[fila, columna] = numeroMinas.ToString();
 			tabla[fila, columna] = numeroMinas.ToString();
 		}
 		else
 		{
-			tabla[fila, columna] = 0.ToString();
+			tablaVisible[fila, columna] = "-";
+			tabla[fila, columna] = "0";
 			for (int i = fila - 1; i <= (fila + 1); i++)
 			{
 				for (int j = columna - 1; j <= (columna + 1); j++)
@@ -83,6 +92,18 @@ class Program
 			Console.WriteLine();
 		}
 	}
+
+	static void generarMatrizVisible(int filas, int columnas)
+	{
+		tablaVisible = new string[filas, columnas];
+		for (int i = 0; i < filas; i++)
+		{
+			for (int j = 0; j < columnas; j++)
+			{
+				tablaVisible[i, j] = "X";
+			}
+		}
+	}
 	static String[,] pedirMatriz()
 	{
 		Console.WriteLine("vamo a genera tabla\n introduce dimensiones ej: 2 2");
@@ -90,6 +111,7 @@ class Program
 		String[] dimensiones = input.Split(' ');
 		int filas = int.Parse(dimensiones[0]);
 		int columnas = int.Parse(dimensiones[1]);
+		generarMatrizVisible(filas, columnas);
 		String[,] matriz = new String[filas, columnas];
 		for(int i=0; i<filas; i++)
 		{
@@ -112,6 +134,7 @@ class Program
 		}
 		return matriz;
 	}
+	
 }
 };
 
