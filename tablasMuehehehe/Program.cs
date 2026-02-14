@@ -10,6 +10,7 @@ class Program
 {
 	static String[,] tabla;
 	static String[,] tablaVisible;
+    static bool perder = false;
 	static void Main(string[] args)
 	{
 		tabla = pedirMatriz();
@@ -18,14 +19,18 @@ class Program
 		int numeroDeMinas = int.Parse(Console.ReadLine());
 		for (int i = 0; i < numeroDeMinas; i++)
 		{
-			Console.WriteLine("Coordenada:");
-			String input = Console.ReadLine();
-			String[] dimensiones = input.Split(' ');
-			int filas = int.Parse(dimensiones[0])-1;
-			int columnas = int.Parse(dimensiones[1])-1;
-			DescubrirMatriz(filas, columnas);
+				Console.WriteLine("Coordenada:");
+				String input = Console.ReadLine();
+				String[] dimensiones = input.Split(' ');
+				int filas = int.Parse(dimensiones[0]) - 1;
+				int columnas = int.Parse(dimensiones[1]) - 1;
+				DescubrirMatriz(filas, columnas);
+				Console.WriteLine(perder);
+				Console.WriteLine("Has perdido");
 		}
 		mostrarMatriz(tablaVisible);
+		if(perder) Console.WriteLine("has perdido."); 
+		else Console.WriteLine("Pues no has perdido");
 	}
 
 	static void DescubrirMatriz(int fila, int columna)
@@ -33,7 +38,8 @@ class Program
 		int numeroMinas = 0;
 		if (tabla[fila, columna] == "*")
 		{
-			Console.WriteLine("Has perdido");
+			tablaVisible[fila, columna] = "*";
+			perder = true;
 			return;
 		}
 		for (int i = fila - 1; i <= (fila + 1); i++)
