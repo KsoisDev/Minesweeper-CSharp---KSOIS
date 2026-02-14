@@ -19,7 +19,7 @@ class Program
 		tabla = pedirMatriz();
 		//MarcarTabla();
 		bool ganar = false;
-		while (!ganar || perder)
+		while (!ganar && !perder)
 		{
 			Console.WriteLine("Quieres descubrir o quieres marcar? \n marcar: 1 descubri: 2 desmarcar: 3");
 			int input = int.Parse(Console.ReadLine());
@@ -33,8 +33,9 @@ class Program
 			ValidarMinas(tabla, tablaVisible);
 			ganar = ValidarVictoria(tablaVisible, numeroDeMinas, minasMarcadas);
 		}
-
+       if(ganar)
 		Console.WriteLine("has ganado!");
+       else Console.WriteLine("Has perdido");
 		//DescubrirTabla();
 		//mostrarMatriz(tabla);
 
@@ -123,13 +124,8 @@ class Program
 			int filas = int.Parse(dimensiones[0]) - 1;
 			int columnas = int.Parse(dimensiones[1]) - 1;
 			DescubrirMatriz(filas, columnas);
-			Console.WriteLine(perder);
-			Console.WriteLine("Has perdido");
 		}
 		mostrarMatriz(tablaVisible);
-	
-		if(perder) Console.WriteLine("has perdido."); 
-		else Console.WriteLine("Pues no has perdido");
 	}
 	static void DescubrirMatriz(int fila, int columna)
 	{
