@@ -1,10 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-//TODO: 
-// - Ganar poniendo todas las banderas adecuadas
-// - Perder
-// - Generacion Aleatorias de tabla
-//
-namespace tablasMuehehehe
+﻿namespace tablasMuehehehe
 {
 class Program
 {
