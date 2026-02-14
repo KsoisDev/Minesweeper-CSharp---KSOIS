@@ -3,6 +3,7 @@
 // - Ganar poniendo todas las banderas adecuadas
 // - Perder
 // - Generacion Aleatorias de tabla
+//
 namespace tablasMuehehehe
 {
 class Program
