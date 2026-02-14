@@ -112,6 +112,20 @@ class Program
 			}
 		}
 	}
+
+	static int ValidarMinas(String[,] matriz)
+	{
+		int numeroDeMinas = 0;
+		for (int i = 0; i < matriz.GetLength(0); i++)
+		{
+			for (int j = 0; j < matriz.GetLength(1); j++)
+			{
+				if (matriz[i, j] == "*")
+					numeroDeMinas++;
+			}
+		}
+		return numeroDeMinas;
+	}
 	static String[,] pedirMatriz()
 	{
 		Console.WriteLine("vamo a genera tabla\n introduce dimensiones ej: 2 2");
